@@ -1,0 +1,40 @@
+package ims.impl;
+
+import ims.interfaces.InventoryManagementSystem;
+import ims.interfaces.PickingResult;
+import ims.interfaces.Product;
+import ims.interfaces.RestockingResult;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+
+public class InventoryManagementSystemImpl implements InventoryManagementSystem{
+
+
+    static List<Product> products = new ArrayList<Product>();
+    static Map<String, Integer> productCount = new HashMap<String, Integer>();
+
+    public PickingResult pickProduct(String productId, int amountToPick) throws Exception{
+        PickingResultImpl pickingResult = new PickingResultImpl();
+        return pickingResult.pickProduct(pickingResult, productId, amountToPick);
+    }
+
+    public RestockingResult restockProduct(String productId, int amountToRestock) {
+        RestockingResultImpl restockingResult = new RestockingResultImpl();
+        return restockingResult.restockProduct(restockingResult, productId, amountToRestock);
+    }
+
+    public Product findProduct(String productId) {
+            for (Product product : products) {
+                if (product.getProductId().equals(productId)) {
+                    return product;
+                }
+            }
+        return null;
+    }
+
+
+}

@@ -1,0 +1,52 @@
+package ims.impl;
+
+import ims.interfaces.InventoryManagementSystem;
+import ims.interfaces.PickingResult;
+import ims.interfaces.Product;
+import ims.interfaces.RestockingResult;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+
+public class InventoryManagementSystemImpl implements InventoryManagementSystem{
+
+
+    static Map<String, Product> products = new HashMap<String,Product>();
+    static Map<String, Integer> productCount = new HashMap<String, Integer>();
+
+    public PickingResult pickProduct(String productId, int amountToPick) throws Exception{
+        PickingResultImpl pickingResult = new PickingResultImpl();
+        return pickingResult.pickProduct(pickingResult, productId, amountToPick);
+    }
+
+    public RestockingResult restockProduct(String productId, int amountToRestock) {
+        RestockingResultImpl restockingResult = new RestockingResultImpl();
+        return restockingResult.restockProduct(restockingResult, productId, amountToRestock);
+    }
+
+    public void addingNewProduct(String productId,int level,String location,int amount)
+    {
+    	Product product= new ProductImpl(productId,location,level);
+    	products.put(productId, product);
+    	productCount.put(productId,amount);
+    	
+    }
+    public Product findProduct(String productId) {
+    	    /*Set<String> productIds = products.keySet();
+            for (String productId : productIds) {
+                if (product.getProductId().equals(productId)) {
+                    return product;
+                }
+            }*/
+    	if(products.containsKey(productId)) return products.get(productId);
+        return null;
+    }
+
+	
+
+
+}

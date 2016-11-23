@@ -1,0 +1,9 @@
+package ims.interfaces;
+
+public interface InventoryManagementSystem {
+
+    PickingResult pickProduct(String productId, int amountToPick) throws Exception;
+
+    RestockingResult restockProduct(String productId, int amountToRestock);
+    void addingNewProduct(String productId,int level,String location,int amount) throws Exception;
+}
